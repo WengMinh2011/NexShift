@@ -49,10 +49,11 @@ The artifact is debug-signed for testing; it is not a Play Store release.
 
 ## Build locally
 
-The compressed Android project is bundled as `NexShift-source.tar.xz.b64`. With JDK 17 and the Android SDK installed:
+The source archive is stored in numbered Base64 segments under `bundle/`. With JDK 17, Gradle 8.9 and the Android SDK installed:
 
 ```bash
-base64 -d NexShift-source.tar.xz.b64 > NexShift-source.tar.xz
+cat bundle/part-*.b64 > NexShift-source.tar.xz.b64
+base64 --decode NexShift-source.tar.xz.b64 > NexShift-source.tar.xz
 tar -xJf NexShift-source.tar.xz
 gradle assembleDebug
 ```
